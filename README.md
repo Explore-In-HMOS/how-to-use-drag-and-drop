@@ -8,8 +8,8 @@ This codelab demonstrates how to implement a basic **drag-and-drop interaction**
 # Preview
 
 <div>    
-  <img src="screens/1.png" width="25%">
-  <img src="screens/2.png" width="25%">
+  <img src="screenshots/1.png" width="25%">
+  <img src="screenshots/2.png" width="25%">
 </div>
 
 # Use Cases
@@ -79,5 +79,7 @@ This codelab demonstrates how to implement a basic **drag-and-drop interaction**
 
 # License
 
-**Drag And Drop Codelab** is distributed under the terms of the MIT License
-See the [LICENSE](./LICENSE) for more information.
+**Drag And Drop Codelab** is distributed under the terms of the **MIT License**
+See the [LICENSE](LICENSE) for more information.
+
+

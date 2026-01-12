@@ -11,10 +11,10 @@ struct Index {
   @State private isDragging: boolean = false;
   @State private dropScale: number = 1.0;
   @State private dropBorder: ResourceColor = '#111827';
-
   private readonly watchSize: string = '100%';
 
-  @Builder DragPreviewBuilder() {
+  @Builder
+  DragPreviewBuilder() {
     Column() {
       Text('📦')
         .fontSize(22)
@@ -35,7 +35,12 @@ struct Index {
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Center)
     .padding({ left: 10, right: 10 })
-    .shadow({ radius: 16, color: '#33000000', offsetX: 0, offsetY: 2 })
+    .shadow({
+      radius: 16,
+      color: '#33000000',
+      offsetX: 0,
+      offsetY: 2
+    })
   }
 
   private startDrag(pointerId: number = 0): void {
@@ -55,7 +60,9 @@ struct Index {
       this.getUIContext()
         .getDragController()
         .executeDrag(
-          () => { this.DragPreviewBuilder(); },
+          () => {
+            this.DragPreviewBuilder();
+          },
           info,
           (err: BusinessError | undefined, res) => {
             this.isDragging = false;
@@ -77,10 +84,11 @@ struct Index {
 
   build() {
     Stack() {
-      Column() {}
+      Column() {
+      }
       .width(this.watchSize)
       .height(this.watchSize)
-      .clip(Circle({ width: '100%', height: '100%' }))
+      .clipShape(Circle({ width: '100%', height: '100%' }))
       .backgroundColor('#0B1220')
 
       Column() {
@@ -92,12 +100,20 @@ struct Index {
           .backgroundColor('#2563EB')
           .fontColor(Color.White)
           .opacity(this.isDragging ? 0.9 : 1)
-          .shadow({ radius: 12, color: '#26000000', offsetX: 0, offsetY: 2 })
+          .shadow({
+            radius: 12,
+            color: '#26000000',
+            offsetX: 0,
+            offsetY: 2
+          })
           .onClick(() => {
             this.dragLabel = 'Hello from drag!';
           })
           .onTouch((ev?: TouchEvent) => {
-            if (!ev) return;
+            if (!ev) {
+              return;
+            }
+
             if (ev.type === TouchType.Down) {
               this.startDrag(0);
             }
@@ -146,7 +162,9 @@ struct Index {
         .onDrop((dragEvent?: DragEvent) => {
           this.dropScale = 1.0;
           this.dropBorder = '#111827';
-          if (!dragEvent) return;
+          if (!dragEvent) {
+            return;
+          }
           const records = dragEvent.getData().getRecords();
           if (records.length > 0) {
             const first = records[0] as unifiedDataChannel.PlainText;
